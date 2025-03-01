@@ -4,7 +4,7 @@ const registerUser = async (req, res) => {
   const { username,uniqueID } = req.body;
   try {
     const existingUser = await User.findOne({ username });
-    if (existingUser) return res.json({ success: false, uuid: existingUser.uuid });
+    if (existingUser) return res.json({ success: true, uuid: existingUser.uuid });
 
     const newUser = new User({ uuid: uniqueID, username });
     await newUser.save();
