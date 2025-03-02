@@ -1,12 +1,12 @@
 const Result = require("../models/Result");
 
 const saveScore = async (req, res) => {
-  const { uuid, score } = req.body;
+  const { score,username } = req.body;
   try {
-    let userResult = await Result.findOne({ uuid });
+    let userResult = await Result.findOne({ username });
 
     if (!userResult) {
-      userResult = new Result({ uuid, scores: [score] });
+      userResult = new Result({ username, scores: [score] });
     } else {
       userResult.scores.push(score);
     }
