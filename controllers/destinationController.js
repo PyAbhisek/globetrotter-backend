@@ -61,7 +61,7 @@ const checkDestination = async (req, res) => {
     // Compare the user input with the actual name (case insensitive)
     const isCorrect = destination.name.toLowerCase() === userInput.toLowerCase();
 
-    res.json({ correct: isCorrect });
+    res.json({ correct: isCorrect,trivia : destination.funFacts });
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
