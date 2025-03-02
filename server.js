@@ -13,7 +13,6 @@ connectDB();
 
 // Routes
 app.use("/api/users", require("./routes/userRoutes"));
-app.use("/api/results", require("./routes/resultRoutes"));
 app.use("/api/destination", require("./routes/destinationRoutes"));
 
 
