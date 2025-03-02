@@ -1,14 +1,15 @@
 const User = require("../models/User");
+const { v4: uuidv4 } = require("uuid");
 
 const registerUser = async (req, res) => {
-  const { username,uniqueID } = req.body;
+  const { username } = req.body;
   try {
     const existingUser = await User.findOne({ username });
-    if (existingUser) return res.json({ success: true, uuid: existingUser.uuid });
+    if (existingUser) return res.json({ success: false, message:"User already Exists" });
 
-    const newUser = new User({ uuid: uniqueID, username });
+    const newUser = new User({ uuid: uuidv4(), username });
     await newUser.save();
-    res.json({ success: true, uuid: newUser.uuid });
+    res.json({ success: true, message:"User created successfully"});
   } catch (err) {
 
     res.status(500).json({ success: false, message: `Server error ${err}` });
